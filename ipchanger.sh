@@ -1,21 +1,20 @@
 #!/bin/bash
-# v1.0     by Jacob Ouellette
+# Current version 1.1     by Jacob Ouellette
+##### CHANGELOG #####
+# v1.1
+# - Add colored text;
+# - Add ens interface name.
+# v1.0 (Official release)
 ########################################################################################################
 # Interface path "/etc/network/interfaces" is default.
 INTPATH='/etc/network/interfaces'
 ########################################################################################################
 function Error() {
 	case "$1" in
-	'1')
-	    echo "ERROR: Invalid IP address";;
-	'2')
-	    echo "ERROR: Invalid prefix";;
-	'3')
-	    echo "ERROR: Invalid gateway";;
-	'4')
-	    echo "ERROR: Interface does not exist";;
-	*)
-	    echo "Unknown error";;
+	'1') echo -e "\e[31mERROR: Invalid IP address\e[0m";;
+	'2') echo -e "\e[31mERROR: Invalid prefix\e[0m";;
+	'3') echo -e "\e[31mERROR: Invalid gateway\e[0m";;
+	'4') echo -e "\e[31mERROR: Interface does not exist\e[0m";;
 	esac
 	exit 1
 } # Error code
@@ -104,7 +103,7 @@ if [[ $1 =~ '-h' ]]; then
 fi # Help
 IPS=`ip addr | grep "inet "`
 for SINT in $IPS; do
-	if [[ "$SINT" =~ "vmnet" || "$SINT" =~ "enp" || "$SINT" =~ "eth" ]]; then ALL_INT+=$SINT' '; fi
+	if [[ "$SINT" =~ "vmnet" || "$SINT" =~ "enp" || "$SINT" =~ "eth" || "$SINT" =~ "ens" ]]; then ALL_INT+=$SINT' '; fi
 done # Get all interfaces name
 echo $ALL_INT
 read -p "Select an interface: " UINT
