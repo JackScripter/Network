@@ -11,4 +11,4 @@ Login script that can by put in a GPO to map network drive according to user gro
 
 ipchanger.sh : Change IP address on interface
 -
-Synthax: ./ipchanger.sh -> *interface* -> 192.168.0.100/24 OR 192.168.0.100/24/192.168.0.1 (ip/prefix/gateway).
+Syntax: ./ipchanger.sh -> *interface* -> 192.168.0.100/24 OR 192.168.0.100/24/192.168.0.1 (ip/prefix/gateway).
